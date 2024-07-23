@@ -1,9 +1,9 @@
 name: Modify Source Repository
 
 on:
-  push:
-    branches:
-      - main  # Adjust this to match your default branch
+  # push:
+  #   branches:
+  #     - main  # Adjust this to match your default branch
 
 jobs:
   modify-source:
