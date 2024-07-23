@@ -1,9 +1,10 @@
 name: Clone and Copy Workflow
 
 on:
-  push:
-    branches:
-      - main  # Adjust this to match your default branch
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - main  # Adjust this to match your default branch
 
 jobs:
   clone-and-copy:
@@ -33,7 +34,7 @@ jobs:
       - name: Copy File
         run: |
           ls -lrt folderA
-          cp folderA/file1.txt folderB/
+          yes | cp -rf folderA/file1.txt folderB/
           ls -lrt folderB
         working-directory: ${{ github.workspace }}
 
