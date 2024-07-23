@@ -1,0 +1,32 @@
+name: Modify Source Repository
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to match your default branch
+
+jobs:
+  modify-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repository
+        uses: actions/checkout@v2
+        with:
+          repository: IndranilJ/repo1
+          ref: main  # Adjust this to match the branch you want to modify
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Make Changes
+        run: |
+          # Add your custom commands here
+          # For example:
+           echo date >> file1.txt
+           echo "Modified content in repo2 workflow" >> file1.txt
+
+      - name: Commit and Push Changes
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions-bot@example.com"
+          git add .
+          git commit -m "Automated changes"
+          git push origin HEAD
