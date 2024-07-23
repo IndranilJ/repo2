@@ -16,6 +16,7 @@ jobs:
         with:
           repository: IndranilJ/repo1
           path: folderA
+          token: ${{ secrets.GH_TOKEN }}
 
       # Step 2: Clone repo2
       - name: Clone repo2
@@ -26,13 +27,17 @@ jobs:
       # Step 3: Copy a File from FolderA to FolderB
       - name: Copy File
         run: |
+          ls -lrt folderA
           cp folderA/file1.txt folderB/
+          ls -lrt folderB
         working-directory: ${{ github.workspace }}
 
       # Step 4: Commit and Push Changes to RepoB
       - name: Commit and Push
         run: |
           cd folderB
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions-bot@example.com"
           git add .
           git commit -m "Copy file from FolderA"
           git push origin main
