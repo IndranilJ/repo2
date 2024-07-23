@@ -25,6 +25,7 @@ jobs:
 
       - name: Commit and Push Changes
         run: |
+          git remote add github https://github.com/IndranilJ/repo2.git
           git config user.name "GitHub Actions Bot"
           git config user.email "actions-bot@example.com"
           git add .
