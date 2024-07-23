@@ -31,11 +31,15 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
 
       # Step 3: Copy a File from FolderA to FolderB
-      - name: Copy File
+      - name: Modify and Copy File
         run: |
           ls -lrt folderA
+          date >> folderA/file1.txt
+          echo modified in repo2 workflow folderA/file1.txt
           yes | cp -rf folderA/file1.txt folderB/
           ls -lrt folderB
+          date >> folderB/file2.txt
+          echo modified in repo2 workflow folderB/file2.txt
         working-directory: ${{ github.workspace }}
 
       # Step 4: Commit and Push Changes to RepoB
