@@ -20,9 +20,14 @@ jobs:
 
       # Step 2: Clone repo2
       - name: Clone repo2
-        run: |
-          git clone https://github.com/IndranilJ/repo2.git folderB
-        working-directory: ${{ github.workspace }}
+        # run: |
+        #   git clone https://github.com/IndranilJ/repo2.git folderB
+        # working-directory: ${{ github.workspace }}
+        uses: actions/checkout@v2
+        with:
+          repository: IndranilJ/repo2
+          path: folderB
+          token: ${{ secrets.GH_TOKEN }}
 
       # Step 3: Copy a File from FolderA to FolderB
       - name: Copy File
