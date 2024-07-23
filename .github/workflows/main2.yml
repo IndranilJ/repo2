@@ -33,8 +33,6 @@ jobs:
       - name: Commit and Push
         run: |
           cd folderB
-          git config user.name "IndranilJ"
-          git config user.email "indranil12jana@gmail.com"
           git add .
           git commit -m "Copy file from FolderA"
           git push origin main
