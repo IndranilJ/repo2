@@ -1,0 +1,41 @@
+name: Clone and Copy Workflow
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to match your default branch
+
+jobs:
+  clone-and-copy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Clone repo1
+      - name: Clone repo1
+        uses: actions/checkout@v2
+        with:
+          repository: IndranilJ/repo1
+          path: folderA
+
+      # Step 2: Clone repo2
+      - name: Clone repo2
+        run: |
+          git clone https://github.com/IndranilJ/repo2.git folderB
+        working-directory: ${{ github.workspace }}
+
+      # Step 3: Copy a File from FolderA to FolderB
+      - name: Copy File
+        run: |
+          cp folderA/file1.txt folderB/
+        working-directory: ${{ github.workspace }}
+
+      # Step 4: Commit and Push Changes to RepoB
+      - name: Commit and Push
+        run: |
+          cd folderB
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions-bot@example.com"
+          git add .
+          git commit -m "Copy file from FolderA"
+          git push origin main
+        working-directory: ${{ github.workspace }}
